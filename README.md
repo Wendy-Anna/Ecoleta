@@ -1,4 +1,4 @@
-# ![](../icones/ogo.svg)
+# ![](icones/logo.svg)
 ## Criada durante o evento Next Level Week - Trilha Starter, desenvolvido em junho de 2020 pela [Rocketseat](https://rocketseat.com.br/)
 ![](imgs/print1.png) ![](imgs/print2.png)
 * **HTML5**
