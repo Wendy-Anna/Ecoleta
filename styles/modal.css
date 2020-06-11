@@ -9,7 +9,11 @@
     align-items: center;
     transition: 400ms;
   }
-  
+
+  #modal.hide {
+    display: none;
+  }
+
   #modal .content{
     color: white;
     width: 420px;
@@ -70,6 +74,3 @@
   background-color: #2fb85e;
   }
   
-  #modal.hide{
-    display: none;
-  }
