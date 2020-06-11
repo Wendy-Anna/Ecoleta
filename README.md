@@ -4,7 +4,7 @@
 * **HTML5**
 * **CSS3**
 * **JavaScript**
-* **NODE.JS**
+* **Node.js**
 * **Banco de Dados SQL**
 * **SQLite**
 ### Instrutor: [Mayk Brito](https://github.com/maykbrito)

@@ -1,0 +1,27 @@
+{
+  "name": "NLW",
+  "version": "1.0.0",
+  "description": "![](public/imgs/print1.png) ![](public/imgs/print2.png) * **HTML5** * **CSS3** * **JavaScript** * **Node.js** * **Banco de Dados SQL** * **SQLite** ### Instrutor: [Mayk Brito](https://github.com/maykbrito) --- ***</>*** **by [Wendy-Anna Albuquerque Lopes](https://github.com/Wendy-Anna)**",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wendy-Anna/Ecoleta.git"
+  },
+  "keywords": [],
+  "author": "Wendy-Anna A. Lopes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wendy-Anna/Ecoleta/issues"
+  },
+  "homepage": "https://github.com/Wendy-Anna/Ecoleta#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
