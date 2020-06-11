@@ -19,14 +19,19 @@ function getCities (event){
 
     const ufValue =  event.target.value
 
-    
+    const indexOfSelectedState = event.target.selectedIndex
+    stateInput.value = event.target.options[indexOfSelectedState].text
+
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
+
+    citySelect.innerHTML = ""
+    citySelect.disabled = true
 
     fetch (url)
     .then( res => res.json())
     .then ( cities => {
         for(const city of cities){
-            citySelect.innerHTML  += `<option value = "${city.id}"> ${city.nome} </option>`
+            citySelect.innerHTML  += `<option value = "${city.nome}"> ${city.nome} </option>`
 
         }
 
@@ -35,5 +40,50 @@ function getCities (event){
 }
 
 document
-.querySelector("select[name=uf]")
-.addEventListener("change", getCities)
+    .querySelector("select[name=uf]")
+    .addEventListener("change", getCities)
+
+// itens de coleta
+// pegar todos os li's
+const itensToCollect = document.querySelectorAll(".items-grid li")
+
+for(const item of itensToCollect){
+    item.addEventListener("click", handleSelectdItem)
+}
+
+const collextedItems = document.querySelector("input[name=items]")
+
+let selectedItems =[]
+
+function handleSelectdItem(event){
+    const itemLi = event.target
+
+    // adicionar ou remover uma classe com javascript
+    itemLi.classList.toggle("selected")
+    const itemId = itemLi.dataset.id
+
+   
+    //verificar se existem itens adicionados, se sim, pegar os itens selecionados
+    const alreadySelected = selectedItems.findIndex(item => {
+        const itemFound = item === itemId //isso será true ou false
+        return itemFound  
+    })
+
+    //se já estiver selecionado
+    if(alreadySelected >= 0) {
+        //tirar da seleção
+        const filteredItem = selectedItems.filter(item => {
+            const itemIsDiferent = item != itemId //false
+            return itemIsDiferent
+        })
+        selectedItems = filteredItem
+    
+
+    //se não estiver selecionado, adicionar a seleção
+    }else{
+        selectedItems.push(itemId)
+    }
+    //atualizar o campo escondido, com os itens selecionados
+    collextedItems.value = selectedItems
+}
+
