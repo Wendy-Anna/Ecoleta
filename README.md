@@ -5,8 +5,8 @@
 * **CSS3**
 * **JavaScript**
 * **Node.js**
-* **Banco de Dados SQL**
-* **SQLite**
+* **Banco de Dados SQLite**
+* **Comandos SQL**
 ### Instrutor: [Mayk Brito](https://github.com/maykbrito)
 ---
 ***</>*** **by [Wendy-Anna Albuquerque Lopes](https://github.com/Wendy-Anna)**
