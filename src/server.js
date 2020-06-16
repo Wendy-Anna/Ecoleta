@@ -8,6 +8,9 @@ const db = require("./database/db")
 //configurar pasta publica
 server.use(express.static("public"));
 
+//habilitar o uso do req.body na nossa aplicação
+server.use(express.urlencoded({ extended: true }));
+
 //Utilizando template engine
 const nunjucks = require("nunjucks");
 nunjucks.configure("src/views", {
@@ -20,15 +23,26 @@ nunjucks.configure("src/views", {
 server.get("/", (req, res) => {
   return res.render("index.html");
 });
+
 server.get("/create-point", (req, res) => {
   return res.render("create-point.html");
 });
+
 server.get("/search", (req, res) => {
+
+  const search = req.query.search;
+
+  if (search === "") {
+    return res.render("search-results.html", { total: 0 });
+  }
+
   //pegar os dados do banco de dados
-  db.all(`SELECT * FROM places`, function (err, rows) {
-    if (err) {
-      console.log(err);
-    }
+  db.all(
+    `SELECT * FROM places  WHERE city LIKE '${search}%'  `,
+    function (err, rows) {
+      if (err) {
+        console.log(err);
+      }
 
     const total = rows.length;
 
@@ -40,7 +54,7 @@ server.get("/search", (req, res) => {
   });
 }); 
 
-server.post("/save-point", (req, res) => {
+server.post("/savepoint", (req, res) => {
   const query = `
     INSERT INTO places (
       image,
@@ -65,16 +79,16 @@ server.post("/save-point", (req, res) => {
   function afterInsertData(error) {
     if (error) {
       console.log(error);
+      return res.render("create-point.html", { error: true });
     }
     console.log("Cadastrado com sucesso!");
     console.log(this);
 
-    return res.send("ok");
+    return res.render("create-point.html", { saved: true });
   }
 
-  database.run(query, values, afterInsertData);
+  db.run(query, values, afterInsertData);
 
-  return res.render("search-results.html");
 });
 
 //ligar o servidor
